@@ -29,7 +29,7 @@ export async function getDate(req, res) {
   } else {
     res.json({
       unix: date.getTime(),
-      natural: strftime('%B %d, %Y', date),
+      utc: strftime('%B %d, %Y', date),
     });
   }
 
