@@ -10,6 +10,11 @@ export async function getHello(req, res) {
 
 export async function getDate(req, res) {
 
+  const date = req.params.date;
 
+  res.json({
+    "unix": new Date(date).getTime(),
+    "utc": new Date(date).toUTCString(),
+  });
 
 }

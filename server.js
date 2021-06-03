@@ -12,12 +12,13 @@ app.use(cors({optionsSuccessStatus: 200}));
 app.use(express.static(`${process.cwd()}/src/public`));
 
 // ROUTES
-import rootRouter from "./src/routes/rootRouter.js";
-app.use("/", rootRouter);
+app.get("/", (req, res) => {
+  res.sendFile(`${process.cwd()}/src/views/index.html`);
+});
 import apiRouter from "./src/routes/apiRouter.js";
 app.use("/api", apiRouter);
 
 // LISTEN
 app.listen(3000, function () {
-  console.info("server running");
+  console.info(`server running: localhost:${PORT}`);
 });
