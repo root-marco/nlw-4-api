@@ -1,4 +1,4 @@
-export async function getHello(req, res) {
+export async function getHello (req, res) {
 
   res.json({
     greeting: 'hello API',
@@ -6,7 +6,7 @@ export async function getHello(req, res) {
 
 }
 
-export async function getDate(req, res) {
+export async function getDate (req, res) {
 
   let resObj = {};
   let date = req.params.date;
@@ -31,5 +31,14 @@ export async function getDate(req, res) {
   } else {
     res.json(resObj);
   }
+
+}
+
+export async function getTimestamp (req, res) {
+
+  res.json({
+    "unix": new Date().getTime(),
+    "utc": new Date().toUTCString(),
+  });
 
 }
