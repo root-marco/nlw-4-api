@@ -25,7 +25,6 @@ export async function getDate (req, res) {
     timeStampUTC = timeStamp.toUTCString();
   }
 
-  console.log(timeStampUTC)
   if (timeStampUTC == "Invalid Date") {
     resObj["error"] = "Invalid Date";
     res.json(resObj);
