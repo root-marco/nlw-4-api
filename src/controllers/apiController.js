@@ -9,26 +9,29 @@ export async function getHello (req, res) {
 export async function getDate (req, res) {
 
   let resObj = {};
-  let date = req.params.date;
+  let dateString = req.params.date;
+  let timeStamp;
+  let timeStampUnix;
+  let timeStampUTC;
+  let isNum = /^\d+$/.test(dateString);
 
-  if (date.includes("-")) {
-    resObj = {
-      "unix": new Date(date).getTime(),
-      "utc": new Date(date).toUTCString(),
-    };
+  if (isNum){
+    timeStamp = new Date(parseInt(dateString));
+    timeStampUnix = timeStamp.valueOf();
+    timeStampUTC = timeStamp.toUTCString();
   } else {
-    date = parseInt(date);
-    resObj = {
-      "unix": new Date(date).getTime(),
-      "utc": new Date(date).toUTCString(),
-    };
+    timeStamp = new Date(dateString);
+    timeStampUnix = timeStamp.valueOf();
+    timeStampUTC = timeStamp.toUTCString();
   }
 
-  if (!resObj["unix"] || !resObj["utc"]) {
-    res.json({
-      "error": "Invalid Date",
-    });
+  console.log(timeStampUTC)
+  if (timeStampUTC == "Invalid Date") {
+    resObj["error"] = "Invalid Date";
+    res.json(resObj);
   } else {
+    resObj["unix"] = timeStampUnix;
+    resObj["utc"] = timeStampUTC;
     res.json(resObj);
   }
 
