@@ -8,7 +8,9 @@ const app = express();
 const PORT = process.env.PORT;
 
 app.use(express.json());
-app.use(cors({optionsSuccessStatus: 200}));
+app.use(cors({
+  optionsSuccessStatus: 200
+}));
 app.use(express.static(`${process.cwd()}/src/public`));
 
 // ROUTES
